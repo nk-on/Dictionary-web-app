@@ -1,14 +1,14 @@
-import './App.css'
-import Container from './Components/Container'
+import "./App.css";
+import Container from "./Components/Container";
+import AppContext from "./Context";
 function App() {
-
   return (
     <>
-      <div className='w-[100vw] h-[100vh] flex justify-center items-center'>
+      <AppContext>
         <Container />
-      </div>
+      </AppContext>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
