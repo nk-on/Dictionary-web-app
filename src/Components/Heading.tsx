@@ -1,7 +1,22 @@
-import { useContext } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { DictionaryConext } from "../Context";
 export default function Heading() {
-  const { darkModeOn, setDarkModeOn } = useContext(DictionaryConext);
+  const { darkModeOn, setDarkModeOn, data, setData } = useContext(DictionaryConext);
+  const [query, setQuery] = useState("");
+  const [inputValue,setInputValue] = useState('')
+  async function fetchDictData(query:string) {
+    if (query === "") return;
+    const res = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${query}`);
+    const data = await res.json();
+    return data;
+  }
+  useEffect(() => {
+    (async () => {
+      const result = await fetchDictData(query);
+      setData(result);
+    })()
+    console.log(data)
+  }, [query]);
   return (
     <>
       <div className="flex justify-between">
@@ -22,10 +37,25 @@ export default function Heading() {
           />
         </div>
       </div>
-      <div className={`flex justify-between items-center px-[20px] h-[50px] w-[100%] bg-[#F4F4F4] dark:bg-[#1F1F1F] mt-[30px] rounded-[10px]`}>
-        <input type="text" className="h-[100%] w-[80%]  bg-[#F4F4F4] dark:bg-[#1F1F1F] outline-none font-bold"/>
+      <div
+        className={`flex justify-between items-center px-[20px] h-[50px] w-[100%] bg-[#F4F4F4] dark:bg-[#1F1F1F] mt-[30px] rounded-[10px]`}
+      >
+        <input
+          type="text"
+          value={inputValue}
+          onChange={(event) => {
+            setInputValue(event.target.value)
+          }}
+          className="h-[100%] w-[80%]  bg-[#F4F4F4] dark:bg-[#1F1F1F] outline-none font-bold"
+        />
         <div>
-          <img src="public/icon-search.svg" alt="search-bar" />
+          <img
+            src="public/icon-search.svg"
+            alt="search-bar"
+            onClick={() => {
+              setQuery(inputValue);
+            }}
+          />
         </div>
       </div>
     </>
