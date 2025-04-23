@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect,  useState } from "react";
 import { DictionaryConext } from "../Context";
 export default function Heading() {
   const { darkModeOn, setDarkModeOn, data, setData } = useContext(DictionaryConext);
@@ -13,7 +13,9 @@ export default function Heading() {
   useEffect(() => {
     (async () => {
       const result = await fetchDictData(query);
-      setData(result);
+      if(result){
+        setData(result[0]);
+      }
     })()
     console.log(data)
   }, [query]);
