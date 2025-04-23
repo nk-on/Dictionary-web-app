@@ -1,14 +1,20 @@
 import { useContext} from "react";
 import { DictionaryConext } from "../Context";
+import SectionTitle from "./SectionTitle";
 export default function Showcase() {
   const { data } = useContext(DictionaryConext);
-  if (data) {
-    const meanings = data["meanings"]?.[0]?.definitions;
-    const synonym = data["meanings"]?.[0]?.synonyms?.[0];
-    const definition = data["meanings"]?.[1]?.definitions?.[0]?.["definition"];
-    const example = data["meanings"]?.[1]?.definitions?.[0]?.["example"];
-    const sourceUrls = data["sourceUrls"];
+  const meanings = data["meanings"]?.[0]?.definitions;
+  const synonym = data["meanings"]?.[0]?.synonyms?.[0];
+  const example = data["meanings"]?.[1]?.definitions?.[0]?.["example"];
+  const sourceUrls = data["sourceUrls"];
+  if ((Object.keys(data).length) === 0) {
     return (
+      <>
+      
+      </>
+    );
+  }
+  return (
       <>
         <div className="flex flex-col gap-[40px] w-[100%]">
           <div className="flex justify-between items-center w-[100%] ">
@@ -59,7 +65,5 @@ export default function Showcase() {
           </div>
         </div>
       </>
-    );
-  }
-  return <></>;
+  )
 }
