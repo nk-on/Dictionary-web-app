@@ -45,24 +45,24 @@ export default function Showcase() {
           <SectionTitle title="verb" />
           <div className="flex flex-col">
             <h2 className="text-[#757575] text-[20px]">Meaning</h2>
-            <ul className="marker:text-[#8F19E8] px-[30px]">
-              <li className="list-disc">
-                <div className="flex flex-col">
+            <ul className="marker:text-[#8F19E8]">
+              <li className="list-disc ">
+                <div className="flex flex-col ">
                   {example} <span className="text-[#757575]">"{example}"</span>
                 </div>
               </li>
             </ul>
-            <div className="flex flex-col gap-[20px]">
-              <div className="w-[90%] h-[1px] bg-[#E9E9E9]"></div>
-              <div className="text-[#757575] flex gap-[10px]">
+          </div>
+          <div className="flex flex-col gap-[20px]">
+              <div className="w-[90%] h-[1px] bg-[#E9E9E9] mt-[20px]"></div>
+              <div className="text-[#757575] flex gap-[30px]">
                 Soruce{" "}
-                <span className="text-[#2D2D2D] flex gap-[10px]">
-                  <a href={`${sourceUrls}`}>{sourceUrls}</a>
+                <span className="text-[#2D2D2D] flex gap-[5px]">
+                  <a href={`${sourceUrls}`} className="dark:text-[#fff]">{sourceUrls}</a>
                   <img src="public/icon-new-window.svg" />
                 </span>
               </div>
             </div>
-          </div>
         </div>
       </>
   )
