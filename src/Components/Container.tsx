@@ -6,7 +6,7 @@ export default function Container() {
   const {darkModeOn} = useContext(DictionaryConext);
   return (
     <div
-      className={`max-w-[100vw] h-[100vh] flex justify-center ${darkModeOn && 'bg-[#050505]'} items-center ${
+      className={`max-w-[100vw] min-h-[100vh] flex justify-center ${darkModeOn && 'bg-[#050505]'} items-center ${
         darkModeOn && "dark"
       }`}
     >

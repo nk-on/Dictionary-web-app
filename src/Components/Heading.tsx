@@ -48,7 +48,7 @@ export default function Heading() {
           onChange={(event) => {
             setInputValue(event.target.value)
           }}
-          className="h-[100%] w-[80%]  bg-[#F4F4F4] dark:bg-[#1F1F1F] outline-none font-bold"
+          className="h-[100%] w-[80%] dark:text-[#fff]  bg-[#F4F4F4] dark:bg-[#1F1F1F] outline-none font-bold"
         />
         <div>
           <img

@@ -16,7 +16,7 @@ export default function Showcase() {
   }
   return (
       <>
-        <div className="flex flex-col gap-[40px] w-[100%]">
+        <div className="flex flex-col gap-[40px] w-[100%] dark:bg-[#050505] dark:text-[#fff]">
           <div className="flex justify-between items-center w-[100%] ">
             <div>
               <h1 className="font-bold text-[64px]">{data.word}</h1>
