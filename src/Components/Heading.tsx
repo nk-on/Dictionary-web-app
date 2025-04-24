@@ -17,7 +17,6 @@ export default function Heading() {
         setData(result[0]);
       }
     })()
-    console.log(data)
   }, [query]);
   return (
     <>

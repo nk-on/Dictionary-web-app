@@ -1,8 +1,14 @@
 import { useContext} from "react";
 import { DictionaryConext } from "../Context";
 import SectionTitle from "./SectionTitle";
+import ErrorPage from "./ErrorPage";
 export default function Showcase() {
   const { data } = useContext(DictionaryConext);
+  if(data === undefined) return (
+    <>
+     <ErrorPage />
+    </>
+  )
   const meanings = data["meanings"]?.[0]?.definitions;
   const synonym = data["meanings"]?.[0]?.synonyms?.[0];
   const example = data["meanings"]?.[1]?.definitions?.[0]?.["example"];
