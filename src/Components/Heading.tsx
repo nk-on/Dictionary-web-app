@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { DictionaryConext } from "../Context";
 export default function Heading() {
-  const { darkModeOn, setDarkModeOn, data, setData } = useContext(DictionaryConext);
+  const { darkModeOn, setDarkModeOn,  setData } = useContext(DictionaryConext);
   const [query, setQuery] = useState("");
   const [inputValue, setInputValue] = useState("");
   const [error, setErrorState] = useState(false);
