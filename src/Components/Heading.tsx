@@ -1,10 +1,11 @@
-import { useContext, useEffect,  useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { DictionaryConext } from "../Context";
 export default function Heading() {
   const { darkModeOn, setDarkModeOn, data, setData } = useContext(DictionaryConext);
   const [query, setQuery] = useState("");
-  const [inputValue,setInputValue] = useState('')
-  async function fetchDictData(query:string) {
+  const [inputValue, setInputValue] = useState("");
+  const [error, setErrorState] = useState(false);
+  async function fetchDictData(query: string) {
     if (query === "") return;
     const res = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${query}`);
     const data = await res.json();
@@ -13,10 +14,10 @@ export default function Heading() {
   useEffect(() => {
     (async () => {
       const result = await fetchDictData(query);
-      if(result){
+      if (result) {
         setData(result[0]);
       }
-    })()
+    })();
   }, [query]);
   return (
     <>
@@ -39,13 +40,15 @@ export default function Heading() {
         </div>
       </div>
       <div
-        className={`flex justify-between items-center px-[20px] h-[50px] w-[100%] bg-[#F4F4F4] dark:bg-[#1F1F1F] mt-[30px] rounded-[10px]`}
+        className={`flex justify-between items-center px-[20px] h-[50px] w-[100%] ${
+          error && "border border-red-500"
+        } bg-[#F4F4F4] dark:bg-[#1F1F1F] mt-[30px] rounded-[10px]`}
       >
         <input
           type="text"
           value={inputValue}
           onChange={(event) => {
-            setInputValue(event.target.value)
+            setInputValue(event.target.value);
           }}
           className="h-[100%] w-[80%] dark:text-[#fff]  bg-[#F4F4F4] dark:bg-[#1F1F1F] outline-none font-bold"
         />
@@ -54,11 +57,17 @@ export default function Heading() {
             src="public/icon-search.svg"
             alt="search-bar"
             onClick={() => {
+              if (inputValue === "") {
+                setErrorState(true);
+                return;
+              }
+              setErrorState(false)
               setQuery(inputValue);
             }}
           />
         </div>
       </div>
+      <div>{error && <p className="text-red">Whoops, can’t be empty…</p>}</div>
     </>
   );
 }
