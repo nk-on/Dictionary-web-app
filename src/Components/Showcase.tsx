@@ -4,6 +4,7 @@ import SectionTitle from "./SectionTitle";
 import ErrorPage from "./ErrorPage";
 export default function Showcase() {
   const { data } = useContext(DictionaryConext);
+  console.log(data)
   if(data === undefined) return (
     <>
      <ErrorPage />
@@ -13,6 +14,8 @@ export default function Showcase() {
   const synonym = data["meanings"]?.[0]?.synonyms?.[0];
   const example = data["meanings"]?.[1]?.definitions?.[0]?.["example"];
   const sourceUrls = data["sourceUrls"];
+  const audio = data['phonetics']?.[0].audio;
+  console.log(audio)
   if ((Object.keys(data).length) === 0) {
     return (
       <>
@@ -29,7 +32,13 @@ export default function Showcase() {
               <p className="text-[#A445ED]">{data.phonetic}</p>
             </div>
             <div className="h-[20%] flex items-center">
-              <img src="public/icon-play.svg" className="cursor-pointer" />
+              <img src="public/icon-play.svg" alt="play" onClick={()=>{
+                const audioElement = document.querySelector('.audioElement');
+                audioElement.play();
+              }} />
+              <audio controls className="audioElement w-[50px] h-[50px] bg-red opacity-0">
+                <source src={audio} type="audio/mpeg" />
+              </audio>
             </div>
           </div>
           <SectionTitle title={"noun"} />
