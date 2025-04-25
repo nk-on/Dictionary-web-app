@@ -11,7 +11,7 @@ export default function Showcase() {
     </>
   )
   const meanings = data["meanings"]?.[0]?.definitions;
-  const synonym = data["meanings"]?.[0]?.synonyms?.[0];
+  const synonym = data["meanings"]?.[0]?.synonyms?.[0] ;
   const example = data["meanings"]?.[1]?.definitions?.[0]?.["example"];
   const sourceUrls = data["sourceUrls"];
   const audio = data['phonetics']?.[0].audio;
@@ -34,7 +34,9 @@ export default function Showcase() {
             <div className="h-[20%] flex items-center">
               <img src="public/icon-play.svg" alt="play" onClick={()=>{
                 const audioElement = document.querySelector('.audioElement');
-                audioElement.play();
+                if(audioElement instanceof HTMLAudioElement){
+                  audioElement.play();
+                }
               }} />
               <audio controls className="audioElement w-[50px] h-[50px] bg-red opacity-0">
                 <source src={audio} type="audio/mpeg" />
