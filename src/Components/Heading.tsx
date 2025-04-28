@@ -14,8 +14,13 @@ export default function Heading() {
   useEffect(() => {
     (async () => {
       const result = await fetchDictData(query);
+      if(result.title === 'No Definitions Found'){
+        setData("No Data")
+        return;
+      }
       if (result) {
         setData(result[0]);
+        return;
       }
     })();
   }, [query]);

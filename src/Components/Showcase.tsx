@@ -7,22 +7,21 @@ export default function Showcase() {
   console.log(data)
   if(data === undefined) return (
     <>
-     <ErrorPage />
     </>
   )
+  if (typeof data === "string") {
+    return (
+      <>
+       <ErrorPage></ErrorPage>
+      </>
+    );
+  }
   const meanings = data["meanings"]?.[0]?.definitions;
   const synonym = data["meanings"]?.[0]?.synonyms?.[0] ;
   const example = data["meanings"]?.[1]?.definitions?.[0]?.["example"];
   const sourceUrls = data["sourceUrls"];
   const audio = data['phonetics']?.[0].audio;
   console.log(audio)
-  if ((Object.keys(data).length) === 0) {
-    return (
-      <>
-      
-      </>
-    );
-  }
   return (
       <>
         <div className="flex flex-col gap-[40px] w-[100%] dark:bg-[#050505] dark:text-[#fff]">

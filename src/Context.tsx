@@ -29,8 +29,8 @@ export interface DictionaryEntry {
 interface AppContextType{
     darkModeOn:boolean,
     setDarkModeOn:(value:boolean)=> void,
-    data:DictionaryEntry | undefined,
-    setData: React.Dispatch<React.SetStateAction<undefined>>
+    data:DictionaryEntry | undefined | string,
+    setData: React.Dispatch<React.SetStateAction<DictionaryEntry | undefined | string >>
 }
 
 const DictionaryConext= createContext<AppContextType>({
@@ -41,7 +41,7 @@ const DictionaryConext= createContext<AppContextType>({
 });
 export default function AppContext({children}:{children:ReactNode}){
     const [darkModeOn,setDarkModeOn] = useState(false);
-    const [data,setData] = useState(undefined)
+    const [data,setData] = useState<DictionaryEntry | undefined | string>(undefined)
     return (
         <DictionaryConext.Provider value={{darkModeOn,setDarkModeOn,data,setData}}>
             {children}
