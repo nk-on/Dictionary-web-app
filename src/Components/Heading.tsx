@@ -1,10 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import { DictionaryConext } from "../Context";
+import FontMenu from "./fontMenu";
 export default function Heading() {
-  const { darkModeOn, setDarkModeOn,  setData } = useContext(DictionaryConext);
+  const { darkModeOn, setDarkModeOn, setData } = useContext(DictionaryConext);
   const [query, setQuery] = useState("");
   const [inputValue, setInputValue] = useState("");
   const [error, setErrorState] = useState(false);
+  const [fontMenuIsVisable, setFontMenuIsVisable] = useState(false);
   async function fetchDictData(query: string) {
     if (query === "") return;
     const res = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${query}`);
@@ -14,11 +16,11 @@ export default function Heading() {
   useEffect(() => {
     (async () => {
       const result = await fetchDictData(query);
-      if(result.title === 'No Definitions Found'){
-        setData("No Data")
-        return;
-      }
       if (result) {
+        if (result.title === "No Definitions Found") {
+          setData("No Data");
+          return;
+        }
         setData(result[0]);
         return;
       }
@@ -31,7 +33,11 @@ export default function Heading() {
         <div className="flex gap-[30px]">
           <div className="flex items-center gap-[5px]">
             <span className="dark:text-[#E9E9E9] font-bold">Sans serif</span>
-            <img src="public/icon-arrow-down.svg" alt="arrow-doen" />
+            <img
+              src="public/icon-arrow-down.svg"
+              alt="arrow-doen"
+              className="cursor-pointer"
+            />
           </div>
           <div className="h-[40px] w-[2px] bg-[#E9E9E9]"></div>
           <img
@@ -66,7 +72,7 @@ export default function Heading() {
                 setErrorState(true);
                 return;
               }
-              setErrorState(false)
+              setErrorState(false);
               setQuery(inputValue);
             }}
           />
