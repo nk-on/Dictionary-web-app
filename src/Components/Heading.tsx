@@ -32,12 +32,14 @@ export default function Heading() {
         <img src="public/logo.svg" alt="logo" />
         <div className="flex gap-[30px]">
           <div className="flex items-center gap-[5px]">
-            <span className="dark:text-[#E9E9E9] font-bold">Sans serif</span>
+            <span className="dark:text-[#E9E9E9] lg:text-[15px] font-bold">Sans serif</span>
             <img
               src="public/icon-arrow-down.svg"
               alt="arrow-doen"
               className="cursor-pointer"
+              onClick={()=> setFontMenuIsVisable(prev => !prev)}
             />
+            {fontMenuIsVisable && <FontMenu />}
           </div>
           <div className="h-[40px] w-[2px] bg-[#E9E9E9]"></div>
           <img

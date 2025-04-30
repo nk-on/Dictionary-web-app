@@ -1,0 +1,24 @@
+@font-face {
+  font-family: "Inconsolata";
+  src: url("/fonts/Inconsolata-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Inter Font */
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/Inter-Regular.ttf") format("truetype"),
+    url("/fonts/Inter-Bold.ttf") format("truetype");
+  font-weight: normal, bold;
+  font-style: normal;
+}
+
+/* Lora Font */
+@font-face {
+  font-family: "Lora";
+  src: url("/fonts/Lora-Regular.ttf") format("truetype"),
+    url("/fonts/Lora-Bold.ttf") format("truetype");
+  font-weight: normal, bold;
+  font-style: normal;
+}
