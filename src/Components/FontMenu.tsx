@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import { DictionaryConext } from "../Context";
 const fontItems = [
   {
     title: "Sans Serif",
@@ -16,10 +18,11 @@ const fontItems = [
   },
 ];
 function FontMenu() {
-  return <div className="w-[183px] h-[152px] bg-[#fff] shadow-custom absolute top-[7vh]  lg:top-[18vh] lg:left-[55vw] rounded-[18px] flex justify-center items-center">
+  const {setFont} = useContext(DictionaryConext)
+  return <div className="w-[183px] h-[152px] bg-[#fff] shadow-custom absolute top-[7vh] dark:bg-[#1F1F1F] hover:text-[#A445ED] dark:text-[#fff] lg:top-[18vh] lg:left-[55vw] rounded-[18px] flex justify-center items-center">
     <ul>
     {
-      fontItems.map(item => <li className={`${item.fontName} font-bold`}>{item.title}</li>)
+      fontItems.map(item => <li className={`${item.fontName} font-bold cursor-pointer`} onClick={()=> setFont(item.fontName)}>{item.title}</li>)
     }
     </ul>
   </div>;

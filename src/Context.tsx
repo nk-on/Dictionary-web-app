@@ -30,20 +30,26 @@ interface AppContextType{
     darkModeOn:boolean,
     setDarkModeOn:(value:boolean)=> void,
     data:DictionaryEntry | undefined | string,
-    setData: React.Dispatch<React.SetStateAction<DictionaryEntry | undefined | string >>
+    setData: React.Dispatch<React.SetStateAction<DictionaryEntry | undefined | string >>,
+    font:string,
+    setFont:React.Dispatch<React.SetStateAction<string>>
 }
 
 const DictionaryConext= createContext<AppContextType>({
     darkModeOn:false,
     setDarkModeOn:()=>{},
     data:undefined,
-    setData:()=>{}
+    setData:()=>{},
+    font:'',
+    setFont:()=>{}
+
 });
 export default function AppContext({children}:{children:ReactNode}){
     const [darkModeOn,setDarkModeOn] = useState(false);
     const [data,setData] = useState<DictionaryEntry | undefined | string>(undefined)
+    const [font,setFont] = useState<string>('')
     return (
-        <DictionaryConext.Provider value={{darkModeOn,setDarkModeOn,data,setData}}>
+        <DictionaryConext.Provider value={{darkModeOn,setDarkModeOn,data,setData,font,setFont}}>
             {children}
         </DictionaryConext.Provider>
     )

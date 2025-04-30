@@ -3,10 +3,10 @@ import { useContext } from "react";
 import { DictionaryConext } from "../Context";
 import Showcase from "./Showcase";
 export default function Container() {
-  const {darkModeOn} = useContext(DictionaryConext);
+  const {darkModeOn,font} = useContext(DictionaryConext);
   return (
     <div
-      className={`max-w-[100vw] min-h-[100vh] flex justify-center ${darkModeOn && 'bg-[#050505]'} pt-[5%] pb-[50px] ${
+      className={`max-w-[100vw] min-h-[100vh] flex justify-center ${font} ${darkModeOn && 'bg-[#050505]'} pt-[5%] pb-[50px] ${
         darkModeOn && "dark"
       }`}
     >

@@ -35,7 +35,7 @@ export default function Heading() {
             <span className="dark:text-[#E9E9E9] lg:text-[15px] font-bold">Sans serif</span>
             <img
               src="public/icon-arrow-down.svg"
-              alt="arrow-doen"
+              alt="arrow-down"
               className="cursor-pointer"
               onClick={()=> setFontMenuIsVisable(prev => !prev)}
             />
