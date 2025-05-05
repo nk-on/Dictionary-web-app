@@ -1,4 +1,4 @@
-import Heading from "./Heading";
+import Heading from "./Heading/Heading";
 import { useContext } from "react";
 import { DictionaryConext } from "../Context";
 import Showcase from "./Showcase";

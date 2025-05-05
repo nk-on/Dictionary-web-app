@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { DictionaryConext } from "../Context";
+import { DictionaryConext } from "../../Context";
 const fontItems = [
   {
     title: "Sans Serif",

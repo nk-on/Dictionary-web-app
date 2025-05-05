@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
-import { DictionaryConext } from "../Context";
-import FontMenu from "./fontMenu";
+import { DictionaryConext } from "../../Context";
+import FontMenu from "./FontMenu";
 export default function Heading() {
   const { darkModeOn, setDarkModeOn, setData } = useContext(DictionaryConext);
   const [query, setQuery] = useState("");
