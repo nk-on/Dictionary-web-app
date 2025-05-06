@@ -4,7 +4,6 @@ import SectionTitle from "./SectionTitle";
 import ErrorPage from "./ErrorPage";
 export default function Showcase() {
   const { data } = useContext(DictionaryConext);
-  console.log(data)
   if(data === undefined) return (
     <>
     </>
