@@ -21,7 +21,6 @@ export default function Showcase() {
   const example = data["meanings"]?.[1]?.definitions?.[0]?.["example"];
   const sourceUrls = data["sourceUrls"];
   const audio = data['phonetics']?.[0].audio;
-  console.log(audio)
   return (
       <>
         <div className="flex flex-col gap-[40px] w-[100%] dark:bg-[#050505] dark:text-[#fff]">
