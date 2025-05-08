@@ -1,7 +1,8 @@
 import { useContext} from "react";
 import { DictionaryConext } from "../Context";
-import SectionTitle from "./SectionTitle";
 import ErrorPage from "./ErrorPage";
+import NounSection from "./NounSection";
+import VerbSection from "./VerbSection";
 export default function Showcase() {
   const { data } = useContext(DictionaryConext);
   if(data === undefined) return (
@@ -40,33 +41,8 @@ export default function Showcase() {
               </audio>
             </div>
           </div>
-          <SectionTitle title={"noun"} />
-          <div className="flex flex-col">
-            <h2 className="text-[#757575] text-[20px]">Meaning</h2>
-            <ul className="marker:text-[#8F19E8] px-[30px]">
-              {meanings?.map((element, idx) => {
-                return (
-                  <li key={idx} className="list-disc">
-                    {element.definition}
-                  </li>
-                );
-              })}
-            </ul>
-            <div className="text-[#757575] text-[20px] mt-[50px] font-normal">
-              Synonyms: <span className="text-[#8F19E8] font-bold">{synonym}</span>
-            </div>
-          </div>
-          <SectionTitle title="verb" />
-          <div className="flex flex-col">
-            <h2 className="text-[#757575] text-[20px]">Meaning</h2>
-            <ul className="marker:text-[#8F19E8]">
-              <li className="list-disc ">
-                <div className="flex flex-col ">
-                  {example} <span className="text-[#757575]">"{example}"</span>
-                </div>
-              </li>
-            </ul>
-          </div>
+          <NounSection meanings = {meanings} synonym = {synonym} />
+          <VerbSection example={example} />
           <div className="flex flex-col gap-[20px]">
               <div className="w-[90%] h-[1px] bg-[#E9E9E9] mt-[20px]"></div>
               <div className="text-[#757575] flex gap-[30px]">
