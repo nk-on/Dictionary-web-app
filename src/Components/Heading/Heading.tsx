@@ -55,7 +55,7 @@ export default function Heading() {
       <div
         className={`flex justify-between items-center px-[20px] h-[50px] w-[100%] ${
           error && "border border-red-500"
-        } bg-[#F4F4F4] dark:bg-[#1F1F1F] mt-[30px] rounded-[10px]`}
+        } bg-[#F4F4F4] dark:bg-[#1F1F1F] mt-[30px] rounded-[10px]  hover:border border-[#A345ed]`}
       >
         <input
           type="text"
