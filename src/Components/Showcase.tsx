@@ -42,7 +42,7 @@ export default function Showcase() {
             </div>
           </div>
           <NounSection meanings = {meanings} synonym = {synonym} />
-          <VerbSection example={example} />
+          {example && <VerbSection example={example} />}
           <div className="flex flex-col gap-[20px]">
               <div className="w-[90%] h-[1px] bg-[#E9E9E9] mt-[20px]"></div>
               <div className="text-[#757575] flex gap-[30px]">
