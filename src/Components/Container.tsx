@@ -1,19 +1,23 @@
-import Heading from "./Heading/Heading";
 import { useContext } from "react";
-import { DictionaryConext } from "../Context";
+import AppContext, { DictionaryConext } from "../Context";
+import { Outlet, useParams } from "react-router";
 import Showcase from "./Showcase";
 export default function Container() {
-  const {darkModeOn,font} = useContext(DictionaryConext);
+  const params = useParams();
+  console.log(params)
+  const { darkModeOn, font } = useContext(DictionaryConext);
   return (
-    <div
-      className={`max-w-[100vw] min-h-[100vh] flex justify-center ${font} ${darkModeOn && 'bg-[#050505]'} pt-[5%] pb-[50px] ${
-        darkModeOn && "dark"
-      }`}
-    >
-      <div className="lg:w-[50%] w-[80%] h-[90%]">
-        <Heading />
-        <Showcase />
+    <AppContext>
+      <div
+        className={`max-w-[100vw] min-h-[100vh] flex justify-center ${font} ${
+          darkModeOn && "bg-[#050505]"
+        } pt-[5%] pb-[50px] ${darkModeOn && "dark"}`}
+      >
+        <div className="lg:w-[50%] w-[80%] h-[90%]">
+          <Outlet />
+          <Showcase />
+        </div>
       </div>
-    </div>
+    </AppContext>
   );
 }

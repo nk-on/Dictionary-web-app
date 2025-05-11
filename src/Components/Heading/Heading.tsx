@@ -1,13 +1,16 @@
 import { useContext, useEffect, useState } from "react";
 import { DictionaryConext } from "../../Context";
 import FontMenu from "./FontMenu";
+import { useNavigate, useParams } from "react-router";
 export default function Heading() {
+  const {id} = useParams();
   const { darkModeOn, setDarkModeOn, setData } = useContext(DictionaryConext);
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState<string | undefined>("");
   const [inputValue, setInputValue] = useState("");
   const [error, setErrorState] = useState(false);
   const [fontMenuIsVisable, setFontMenuIsVisable] = useState(false);
-  async function fetchDictData(query: string) {
+  const navigate = useNavigate()
+  async function fetchDictData(query: string | undefined) {
     if (query === "") return;
     const res = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${query}`);
     const data = await res.json();
@@ -16,14 +19,13 @@ export default function Heading() {
   useEffect(() => {
     (async () => {
       const result = await fetchDictData(query);
-      if (result) {
-        if (result.title === "No Definitions Found") {
-          setData("No Data");
-          return;
-        }
-        setData(result[0]);
+      if(!result) return;
+      if (result.title === "No Definitions Found") {
+        setData("No Data");
         return;
       }
+      setData(result[0]);
+      return;
     })();
   }, [query]);
   return (
@@ -32,12 +34,14 @@ export default function Heading() {
         <img src="public/logo.svg" alt="logo" />
         <div className="flex gap-[30px]">
           <div className="flex items-center gap-[5px]">
-            <span className="dark:text-[#E9E9E9] lg:text-[15px] font-bold">Sans serif</span>
+            <span className="dark:text-[#E9E9E9] lg:text-[15px] font-bold">
+              Sans serif
+            </span>
             <img
               src="public/icon-arrow-down.svg"
               alt="arrow-down"
               className="cursor-pointer"
-              onClick={()=> setFontMenuIsVisable(prev => !prev)}
+              onClick={() => setFontMenuIsVisable((prev) => !prev)}
             />
             {fontMenuIsVisable && <FontMenu />}
           </div>
@@ -75,7 +79,8 @@ export default function Heading() {
                 return;
               }
               setErrorState(false);
-              setQuery(inputValue);
+              setQuery(id);
+              navigate(`/${inputValue}`)
             }}
           />
         </div>
