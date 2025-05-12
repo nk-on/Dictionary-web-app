@@ -6,7 +6,6 @@ import { useState,useEffect } from "react";
 import { useParams } from "react-router";
 export default function Showcase() {
   const {id} = useParams();
-  console.log(id)
   const [data,setData] = useState<DictionaryEntry | undefined | string>(undefined)
   async function fetchDictData() {
     if (id === "") return;

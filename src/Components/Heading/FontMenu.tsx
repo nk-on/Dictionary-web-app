@@ -18,14 +18,18 @@ const fontItems = [
   },
 ];
 function FontMenu() {
-  const { setFont } = useContext(DictionaryConext);
+  const { setFont,font } = useContext(DictionaryConext);
   return (
     <div className="w-[183px] h-[152px] bg-[#fff] shadow-custom absolute top-[7vh] dark:bg-[#1F1F1F] dark:text-[#fff] lg:top-[18vh] lg:left-[55vw] rounded-[18px] flex justify-center items-center">
       <ul>
-        {fontItems.map((item) => (
+        {fontItems.map((item,index) => (
           <li
+            key={index}
             className={`${item.fontName} font-bold cursor-pointer  hover:text-[#A445ED]`}
-            onClick={() => setFont(item.fontName)}
+            onClick={() => {
+              setFont(item.fontName);
+              console.log(font)
+            }}
           >
             {item.title}
           </li>

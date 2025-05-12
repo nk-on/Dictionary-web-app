@@ -32,6 +32,7 @@ export default function Heading() {
             className="cursor-pointer"
             onClick={() => {
               setDarkModeOn(!darkModeOn);
+              console.log(darkModeOn)
             }}
           />
         </div>
