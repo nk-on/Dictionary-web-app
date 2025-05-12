@@ -1,12 +1,34 @@
-import { useContext} from "react";
-import { DictionaryConext } from "../Context";
 import ErrorPage from "./ErrorPage";
 import NounSection from "./NounSection";
 import VerbSection from "./VerbSection";
+import { DictionaryEntry } from "../Context";
+import { useState,useEffect } from "react";
+import { useParams } from "react-router";
 export default function Showcase() {
-  const { data } = useContext(DictionaryConext);
+  const {id} = useParams();
+  console.log(id)
+  const [data,setData] = useState<DictionaryEntry | undefined | string>(undefined)
+  async function fetchDictData() {
+    if (id === "") return;
+    const res = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${id}`);
+    const data = await res.json();
+    return data;
+  }
+  useEffect(() => {
+    (async () => {
+      const result = await fetchDictData();
+      if(!result) return;
+      if (result.title === "No Definitions Found") {
+        setData("No Data")
+        return;
+      }
+      setData(result[0]);
+      return;
+    })();
+  }, [id]);
   if(data === undefined) return (
     <>
+     <h1></h1>
     </>
   )
   if (typeof data === "string") {
