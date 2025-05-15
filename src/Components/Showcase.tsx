@@ -27,7 +27,6 @@ export default function Showcase() {
   }, [id]);
   if(data === undefined) return (
     <>
-     <h1></h1>
     </>
   )
   if (typeof data === "string") {
@@ -41,11 +40,11 @@ export default function Showcase() {
   const synonym = data["meanings"]?.[0]?.synonyms?.[0] ;
   const example = data["meanings"]?.[1]?.definitions?.[0]?.["example"];
   const sourceUrls = data["sourceUrls"];
-  const audio = data['phonetics']?.[0].audio;
+  const audio = data['phonetics']?.[2].audio;
   return (
       <>
         <div className="flex flex-col gap-[40px] w-[100%] dark:bg-[#050505] dark:text-[#fff]">
-          <div className="flex justify-between items-center w-[100%] ">
+          <div className="flex justify-between items-center gap-[30px] w-[100%] ">
             <div>
               <h1 className="font-bold text-[64px]">{data.word}</h1>
               <p className="text-[#A445ED]">{data.phonetic}</p>
