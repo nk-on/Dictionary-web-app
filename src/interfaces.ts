@@ -9,7 +9,12 @@ export interface DictionaryEntry {
 
 export interface Phonetic {
     text?: string;
-    audio?: string;
+    audio: string;
+    sourceUrl?: string;
+    license?: {
+      name: string;
+      url: string;
+    };
 }
 
 export interface Meaning {
