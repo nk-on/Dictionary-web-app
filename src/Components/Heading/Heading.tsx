@@ -1,13 +1,15 @@
 import { useContext,  useState } from "react";
 import { DictionaryConext } from "../../Context";
 import FontMenu from "./FontMenu";
-import { Outlet, useNavigate} from "react-router";
+import { Outlet} from "react-router";
+import {navigatePage} from "./useNavigatePage";
+import { useNavigate } from "react-router";
 export default function Heading() {
   const { darkModeOn, setDarkModeOn} = useContext(DictionaryConext);
   const [inputValue, setInputValue] = useState("");
   const [error, setErrorState] = useState(false);
   const [fontMenuIsVisable, setFontMenuIsVisable] = useState(false);
-  const navigate = useNavigate()
+   const navigate = useNavigate();
   return (
     <>
       <div className="flex justify-between">
@@ -54,13 +56,9 @@ export default function Heading() {
           <img
             src="public/icon-search.svg"
             alt="search-bar"
+            
             onClick={() => {
-              if (inputValue === "") {
-                setErrorState(true);
-                return;
-              }
-              setErrorState(false);
-              navigate(`/${inputValue}`)
+              navigatePage(inputValue, setErrorState, navigate)
             }}
           />
         </div>
