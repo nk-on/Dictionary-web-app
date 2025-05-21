@@ -47,6 +47,11 @@ export default function Heading() {
         <input
           type="text"
           value={inputValue}
+           onKeyDown={(e)=>{
+              if(e.key === 'Enter'){
+                navigatePage(inputValue, setErrorState, navigate)
+              }
+            }}
           onChange={(event) => {
             setInputValue(event.target.value);
           }}
@@ -56,7 +61,6 @@ export default function Heading() {
           <img
             src="public/icon-search.svg"
             alt="search-bar"
-            
             onClick={() => {
               navigatePage(inputValue, setErrorState, navigate)
             }}
