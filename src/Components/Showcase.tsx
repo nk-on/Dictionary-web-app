@@ -4,6 +4,7 @@ import VerbSection from "./VerbSection";
 import { DictionaryEntry, Phonetic} from "../interfaces";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
+import Loading from "./Loading";
 export default function Showcase() {
   const { id } = useParams();
   const [data, setData] = useState<DictionaryEntry | undefined | string>(undefined);
@@ -30,7 +31,10 @@ export default function Showcase() {
       return;
     })();
   }, [id]);
-  if (data === undefined) return <></>;
+  console.log(data)
+  if (data === undefined) return <> 
+   <Loading />
+  </>;
   if (typeof data === "string") {
     return (
       <>
@@ -42,8 +46,6 @@ export default function Showcase() {
   const synonym = data["meanings"]?.[0]?.synonyms?.[0];
   const example = data["meanings"]?.[1]?.definitions?.[0]?.["example"];
   const sourceUrls = data["sourceUrls"];
-  console.log(audio);
-  // console.log(phonetics)
   return (
     <>
       <div className="flex flex-col gap-[40px] w-[100%] dark:bg-[#050505] dark:text-[#fff]">
