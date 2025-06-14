@@ -1,5 +1,5 @@
 import SectionTitle from "./SectionTitle";
-import { Definition } from "../Context";
+import { Definition } from "../interfaces";
 interface SectionNoun {
   meanings: Definition[],
   synonym:string,
