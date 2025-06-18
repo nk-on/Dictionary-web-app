@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import { DictionaryEntry } from "./interfaces";
 import { Phonetic } from "./interfaces";
+import { ErrorResponse } from "react-router";
 export const useFetch = (url: string) => {
-  const [result, setResult] = useState(undefined);
+  const [result, setResult] = useState<DictionaryEntry[] | undefined | ErrorResponse>(
+    undefined
+  );
   const [audio, setAudio] = useState<string | undefined>("");
   const [data, setData] = useState<DictionaryEntry | undefined | string>(undefined);
   useEffect(() => {
@@ -12,7 +15,7 @@ export const useFetch = (url: string) => {
   }, [url]);
   useEffect(() => {
     if (!result) return;
-    if (result.title === "No Definitions Found") {
+    if (isErrorResponse(result)) {
       setData("No Data");
       return;
     }
@@ -23,6 +26,9 @@ export const useFetch = (url: string) => {
       })?.audio
     );
     setData(result[0]);
-  },[result]);
+  }, [result]);
   return { data, audio };
 };
+function isErrorResponse(data:  DictionaryEntry[] | ErrorResponse): data is ErrorResponse   {
+  return data && typeof data === "object" && "title" in data;
+}
