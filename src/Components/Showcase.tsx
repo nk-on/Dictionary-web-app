@@ -1,37 +1,12 @@
 import ErrorPage from "./ErrorPage";
 import NounSection from "./NounSection";
 import VerbSection from "./VerbSection";
-import { DictionaryEntry, Phonetic} from "../interfaces";
-import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import Loading from "./Loading";
+import { useFetch } from "../useFetch";
 export default function Showcase() {
   const { id } = useParams();
-  const [data, setData] = useState<DictionaryEntry | undefined | string>(undefined);
-  const [audio, setAudio] = useState<string | undefined>("");
-  async function fetchDictData() {
-    if (id === "") return;
-    const res = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${id}`);
-    const data = await res.json();
-    return data;
-  }
-  useEffect(() => {
-    (async () => {
-      const result = await fetchDictData();
-      if (!result) return;
-      if (result.title === "No Definitions Found") {
-        setData("No Data");
-        return;
-      }
-      const phonetics:Phonetic[] = result[0].phonetics;
-      setAudio( phonetics.find((element) => {
-          return element.audio.length !== 0;
-        })?.audio);
-      setData(result[0]);
-      return;
-    })();
-  }, [id]);
-  console.log(data)
+  const {data,audio} = useFetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${id}`)
   if (data === undefined) return <> 
    <Loading />
   </>;
