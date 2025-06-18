@@ -23,6 +23,6 @@ export const useFetch = (url: string) => {
       })?.audio
     );
     setData(result[0]);
-  });
+  },[result]);
   return { data, audio };
 };
